@@ -4,6 +4,17 @@ import { extractUrls } from "./chatParser";
 
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
+// Simple hash function for browser environment
+function generateStableId(str: string): string {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash; // Convert to 32bit integer
+  }
+  return Math.abs(hash).toString(16).padStart(12, '0');
+}
+
 // Define interface for AI response items
 interface AIProcessedItem {
   id: string;
@@ -23,8 +34,13 @@ export const processMessagesWithGemini = async (messages: ParsedMessage[]): Prom
     const uniqueUrls = Array.from(new Set(urls));
 
     uniqueUrls.forEach((url, urlIndex) => {
+      // Create a deterministic ID based on content (Date + Time + Sender + URL)
+      // This ensures that even if the file order changes or lines are added, the ID remains the same.
+      const idString = `${msg.date}|${msg.time}|${msg.sender}|${url}`;
+      const stableId = generateStableId(idString);
+
       rawItems.push({
-        id: `msg-${msgIndex}-link-${urlIndex}`,
+        id: stableId,
         targetUrl: url,
         fullMessage: msg.content, // Keep original context
         sender: msg.sender,

@@ -114,7 +114,7 @@ const PostDetail: React.FC<PostDetailProps> = ({ item, onClose, onAddComment }) 
                   </p>
                   
                   <h3 className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-2">원본 메시지</h3>
-                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg text-sm text-gray-600 dark:text-gray-300 whitespace-pre-wrap mb-6 border border-gray-100 dark:border-gray-700">
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg text-sm text-gray-600 dark:text-gray-300 whitespace-pre-wrap mb-6 border border-gray-100 dark:border-gray-700 overflow-x-hidden break-words">
                     {item.originalText}
                   </div>
 

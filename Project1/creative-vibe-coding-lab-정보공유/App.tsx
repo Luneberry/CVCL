@@ -11,18 +11,63 @@ import LinkCard from './components/LinkCard';
 import PostDetail from './components/PostDetail';
 import { parseChatFile } from './services/chatParser';
 import { processMessagesWithGemini } from './services/geminiService';
+import { supabase } from './services/supabaseClient';
 import { LinkItem, Comment } from './types';
 import initialData from './data/generated.json';
 
 const App: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
-  // Initialize with generated data
-  const [items, setItems] = useState<LinkItem[]>(initialData as unknown as LinkItem[]);
+  // Initialize with generated data safely
+  const [items, setItems] = useState<LinkItem[]>(() => {
+    // Handle potential ESM default export wrapping or direct array
+    const data = (initialData as any).default || initialData;
+    return Array.isArray(data) ? data : [];
+  });
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [isProcessing, setIsProcessing] = useState(false);
   const [dragActive, setDragActive] = useState(false);
   const [selectedItem, setSelectedItem] = useState<LinkItem | null>(null);
+
+  // Load comments from Supabase on mount
+  useEffect(() => {
+    const fetchComments = async () => {
+      const { data, error } = await supabase
+        .from('comments')
+        .select('*')
+        .order('created_at', { ascending: true });
+
+      if (error) {
+        console.error('Error fetching comments:', error);
+        return;
+      }
+
+      if (data) {
+        const commentsByLinkId: Record<string, Comment[]> = {};
+        
+        data.forEach((row: any) => {
+          const c: Comment = {
+            id: row.id,
+            author: row.author,
+            content: row.content,
+            timestamp: new Date(row.created_at),
+            imageUrl: row.image_url || undefined
+          };
+          if (!commentsByLinkId[row.link_id]) {
+            commentsByLinkId[row.link_id] = [];
+          }
+          commentsByLinkId[row.link_id].push(c);
+        });
+
+        setItems(prev => prev.map(item => ({
+          ...item,
+          comments: commentsByLinkId[item.id] || []
+        })));
+      }
+    };
+
+    fetchComments();
+  }, []);
 
   // Toggle Dark Mode
   const toggleTheme = () => {
@@ -81,23 +126,48 @@ const App: React.FC = () => {
   };
 
   // Comment Handler
-  const addComment = (itemId: string, newComment: Omit<Comment, 'id' | 'timestamp'>) => {
-    setItems(prev => prev.map(item => {
-      if (item.id === itemId) {
-        return {
-          ...item,
-          comments: [
-            ...item.comments,
-            {
-              id: Math.random().toString(36).substr(2, 9),
-              timestamp: new Date(),
-              ...newComment
-            }
-          ]
-        };
-      }
-      return item;
-    }));
+  const addComment = async (itemId: string, newComment: Omit<Comment, 'id' | 'timestamp'>) => {
+    const { data, error } = await supabase
+      .from('comments')
+      .insert([
+        {
+          link_id: itemId,
+          author: newComment.author,
+          content: newComment.content,
+          image_url: newComment.imageUrl
+        }
+      ])
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Error adding comment:', error);
+      alert('코멘트 저장에 실패했습니다.');
+      return;
+    }
+
+    if (data) {
+      const addedComment: Comment = {
+        id: data.id,
+        author: data.author,
+        content: data.content,
+        timestamp: new Date(data.created_at),
+        imageUrl: data.image_url || undefined
+      };
+
+      setItems(prev => prev.map(item => {
+        if (item.id === itemId) {
+          return {
+            ...item,
+            comments: [
+              ...item.comments,
+              addedComment
+            ]
+          };
+        }
+        return item;
+      }));
+    }
   };
 
   // Update selected item if it changes (e.g. comments added while modal open)
