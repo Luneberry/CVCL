@@ -1,0 +1,5 @@
+{
+  "name": "Creative Vibe Coding Lab 정보공유",
+  "description": "카카오톡 대화 내역에서 유용한 링크와 정보를 추출, 요약, 분류하여 공유하는 아카이빙 플랫폼입니다.",
+  "requestFramePermissions": []
+}
