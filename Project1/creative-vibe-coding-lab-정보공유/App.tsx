@@ -78,7 +78,7 @@ const App: React.FC = () => {
 
     if (error) {
       console.error('Error fetching journals:', error);
-      alert('모임일지를 불러오는 데 실패했습니다.');
+      alert(`모임일지를 불러오는 데 실패했습니다: ${error.message}`);
     } else {
       setJournals(data || []);
     }
