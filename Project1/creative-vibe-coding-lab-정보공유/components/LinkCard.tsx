@@ -41,7 +41,13 @@ const LinkCard: React.FC<LinkCardProps> = ({ item, onClick }) => {
                 <ArrowTopRightOnSquareIcon className="w-8 h-8 text-blue-500" />
              </div>
              <span className="text-sm font-medium truncate max-w-xs text-gray-500 dark:text-gray-400">
-               {new URL(item.url).hostname}
+               {(() => {
+                 try {
+                   return new URL(item.url).hostname;
+                 } catch (e) {
+                   return item.url;
+                 }
+               })()}
              </span>
           </div>
         )}

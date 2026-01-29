@@ -7,7 +7,7 @@ export interface Comment {
 }
 
 export interface LinkItem {
-  id: string;
+  id:string;
   url: string;
   originalText: string; // The full message context
   sender: string;
@@ -27,6 +27,14 @@ export interface ParsedMessage {
   time: string;
   date: string;
   content: string;
+}
+
+export interface Journal {
+  id: number;
+  session_id: number;
+  title: string | null;
+  content: string | null;
+  created_at: string;
 }
 
 export enum ViewMode {
