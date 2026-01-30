@@ -68,6 +68,7 @@ async function processBatch(items: any[]): Promise<AIProcessedItem[]> {
     4. Category: Choose one of ["스터디", "개인 프로젝트", "AI 뉴스", "개발 툴", "튜토리얼", "디자인", "일반", "커리어", "기타"] in KOREAN.
        * CRITICAL: If the message context implies the sender created the content (e.g., "I made this", "my toy project", "제 포트폴리오입니다", "만들어봤습니다", "결과물 공유"), you MUST categorize it as "개인 프로젝트".
        * If the message is about recruiting for a study group, sharing study materials, or related to a study session (e.g., "스터디", "함께 공부", "모집"), categorize it as "스터디".
+       * If the 'targetUrl' is for a Google Spreadsheet ('docs.google.com/spreadsheets') or Google Presentation ('docs.google.com/presentation'), you MUST categorize it as "스터디".
     5. Summary: Write a 1-sentence summary in KOREAN explaining the link.
     
     Input Data:
@@ -203,4 +204,50 @@ export const processMessagesWithGemini = async (messages: ParsedMessage[]): Prom
   });
 
   return finalItems;
+};
+
+export const generateJournalFromRawText = async (rawText: string): Promise<{ title: string; content: string }> => {
+  const prompt = `
+    다음 텍스트는 개발팀의 스터디나 회의록입니다.
+    이 내용을 바탕으로 개발일지를 작성해주세요.
+
+    요구사항:
+    1.  **제목 (title)**: 전체 내용을 대표하는 핵심적인 제목을 10~20자 내외의 한국어로 생성해주세요.
+    2.  **내용 (content)**:
+        *   전체 텍스트를 간결하게 요약해주세요.
+        *   주요 논의사항, 결정사항, 공유된 기술 등을 중심으로 정리해주세요.
+        *   반드시 한국어와 마크다운 문법(예: '-', '*', '#')을 사용하여 가독성 좋게 작성해주세요.
+
+    원본 텍스트:
+    ---
+    ${rawText}
+    ---
+  `;
+
+  const responseSchema = {
+    type: Type.OBJECT,
+    properties: {
+      title: { type: Type.STRING },
+      content: { type: Type.STRING },
+    },
+    required: ["title", "content"]
+  };
+
+  try {
+    console.log(`[Journal] Calling Gemini API (Model: gemini-2.0-flash)...`);
+    const response = await ai.models.generateContent({
+      model: "gemini-2.0-flash",
+      contents: prompt,
+      config: {
+        responseMimeType: "application/json",
+        responseSchema: responseSchema,
+      },
+    });
+
+    const parsed = JSON.parse(response.text || "{}");
+    return parsed;
+  } catch (error) {
+    console.error("Journal generation error:", error);
+    throw new Error("Failed to generate journal from AI.");
+  }
 };

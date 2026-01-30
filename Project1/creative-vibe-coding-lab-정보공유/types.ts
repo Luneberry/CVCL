@@ -34,6 +34,7 @@ export interface Journal {
   session_id: number;
   title: string | null;
   content: string | null;
+  raw_content: string | null;
   created_at: string;
 }
 

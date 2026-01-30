@@ -48,6 +48,19 @@ const JournalView: React.FC<JournalViewProps> = ({ journals, onAdd, onEdit, onDe
                     {new Date(journal.created_at).toLocaleDateString('ko-KR')}
                   </p>
                   <p className="text-gray-700 dark:text-gray-300 whitespace-pre-wrap">{journal.content}</p>
+                  
+                  {journal.raw_content && (
+                    <details className="mt-3 group">
+                      <summary className="cursor-pointer text-sm font-medium text-gray-500 dark:text-gray-400 group-hover:text-blue-600">
+                        원문 펼쳐보기
+                      </summary>
+                      <div className="mt-2 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-md border dark:border-gray-600">
+                        <p className="text-sm text-gray-600 dark:text-gray-300 whitespace-pre-wrap">
+                          {journal.raw_content}
+                        </p>
+                      </div>
+                    </details>
+                  )}
                 </div>
                 <div className="flex gap-2 flex-shrink-0 ml-4">
                   <button onClick={() => onEdit(journal)} className="p-2 text-gray-500 hover:text-blue-600 transition-colors">
