@@ -323,22 +323,87 @@ const App: React.FC = () => {
     }
   };
 
-  const handleSaveMember = async (memberData: Omit<Member, 'id' | 'created_at'>) => {
-    if (memberToEdit) { // Update
-      const { error } = await supabase.from('members').update(memberData).eq('id', memberToEdit.id);
-      if (error) alert('수정에 실패했습니다.');
-    } else { // Create
-      const { error } = await supabase.from('members').insert([memberData]);
-      if (error) alert('저장에 실패했습니다.');
+  const handleSaveMember = async (memberData: Omit<Member, 'id' | 'created_at'>, file?: File | null) => {
+    let finalAvatarUrl = memberData.avatar_url;
+
+    if (file) {
+      try {
+        const fileExt = file.name.split('.').pop();
+        const fileName = `${Math.random()}.${fileExt}`;
+        const filePath = `avatars/${fileName}`;
+
+        const { error: uploadError } = await supabase.storage
+          .from('members')
+          .upload(filePath, file);
+
+        if (uploadError) {
+          console.warn('Supabase storage upload failed:', uploadError);
+          const reader = new FileReader();
+          const base64 = await new Promise<string>((resolve) => {
+            reader.onload = () => resolve(reader.result as string);
+            reader.readAsDataURL(file);
+          });
+          finalAvatarUrl = base64;
+        } else {
+          const { data: { publicUrl } } = supabase.storage
+            .from('members')
+            .getPublicUrl(filePath);
+          finalAvatarUrl = publicUrl;
+        }
+      } catch (err) {
+        console.error('Error handling image upload:', err);
+      }
     }
-    fetchMembers(); // Refetch list
+
+    const updatedData = { ...memberData, avatar_url: finalAvatarUrl };
+
+    try {
+      if (updatedData.is_leader) {
+        await supabase.from('members').update({ is_leader: false }).neq('id', -1);
+      }
+
+      if (memberToEdit) {
+        const { error } = await supabase.from('members').update(updatedData).eq('id', memberToEdit.id);
+        if (error) {
+          alert(`수정 실패: ${error.message}`);
+          return;
+        }
+      } else {
+        const { error } = await supabase.from('members').insert([updatedData]);
+        if (error) {
+          alert(`저장 실패: ${error.message}\n\n팁: Supabase에 is_leader 컬럼을 추가하셨나요?`);
+          return;
+        }
+      }
+      fetchMembers();
+    } catch (err: any) {
+      alert(`오류 발생: ${err.message}`);
+    }
   };
 
   // --- Derived State & Memos ---
   
+  const sortedMembers = useMemo(() => {
+    return [...members].sort((a, b) => {
+      // 1. Leader goes first
+      if (a.is_leader && !b.is_leader) return -1;
+      if (!a.is_leader && b.is_leader) return 1;
+      // 2. Then sort by creation date
+      return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
+    });
+  }, [members]);
+
   const activeItem = useMemo(() => items.find(i => i.id === selectedItem?.id) || null, [items, selectedItem]);
 
   const categories = useMemo(() => ['All', ...Array.from(new Set(items.map(i => i.category))).sort((a, b) => a.localeCompare(b))], [items]);
+
+  const categoryCounts = useMemo(() => {
+    const counts: Record<string, number> = { All: items.length };
+    items.forEach(item => {
+      counts[item.category] = (counts[item.category] || 0) + 1;
+    });
+    return counts;
+  }, [items]);
 
   const filteredItems = useMemo(() => {
     const categoryFiltered = selectedCategory === 'All' ? items : items.filter(i => i.category === selectedCategory);
@@ -362,6 +427,7 @@ const App: React.FC = () => {
         <Sidebar 
           isOpen={isSidebarOpen}
           categories={categories}
+          categoryCounts={categoryCounts}
           selectedCategory={selectedCategory}
           onSelectCategory={setSelectedCategory}
           onCloseMobile={() => setIsSidebarOpen(false)}
@@ -404,7 +470,7 @@ const App: React.FC = () => {
             
             {view === 'member' && (
               <MemberView 
-                members={members}
+                members={sortedMembers}
                 onAdd={handleAddMember}
                 onEdit={handleEditMember}
                 onDelete={handleDeleteMember}

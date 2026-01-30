@@ -4,6 +4,7 @@ import { ChevronDownIcon, ChevronRightIcon, Bars3Icon, LinkIcon, BookOpenIcon, R
 interface SidebarProps {
   isOpen: boolean;
   categories: string[];
+  categoryCounts: Record<string, number>;
   selectedCategory: string;
   onSelectCategory: (category: string) => void;
   onCloseMobile: () => void;
@@ -18,6 +19,7 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ 
   isOpen, 
   categories, 
+  categoryCounts,
   selectedCategory, 
   onSelectCategory,
   onCloseMobile,
@@ -167,13 +169,18 @@ const Sidebar: React.FC<SidebarProps> = ({
                   onSelectCategory('All');
                   onCloseMobile();
                 }}
-                className={`w-full text-left px-4 py-2 rounded-lg transition-colors ${
+                className={`w-full text-left px-4 py-2 rounded-lg transition-colors flex items-center justify-between ${
                   selectedCategory === 'All' 
                     ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 font-medium' 
-                    : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
                 }`}
               >
-                전체 보기
+                <span>전체 보기</span>
+                <span className={`text-[10px] px-2 py-0.5 rounded-full ${
+                  selectedCategory === 'All' ? 'bg-blue-200 dark:bg-blue-800' : 'bg-gray-100 dark:bg-gray-700'
+                }`}>
+                  {categoryCounts['All'] || 0}
+                </span>
               </button>
 
               <div className="pt-6 pb-2">
@@ -192,10 +199,15 @@ const Sidebar: React.FC<SidebarProps> = ({
                   className={`w-full text-left px-4 py-2 rounded-lg transition-colors flex items-center justify-between ${
                     selectedCategory === cat
                       ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 font-medium'
-                      : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                      : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
                   }`}
                 >
                   <span>{cat}</span>
+                  <span className={`text-[10px] px-2 py-0.5 rounded-full ${
+                    selectedCategory === cat ? 'bg-blue-200 dark:bg-blue-800' : 'bg-gray-100 dark:bg-gray-700'
+                  }`}>
+                    {categoryCounts[cat] || 0}
+                  </span>
                 </button>
               ))}
             </nav>

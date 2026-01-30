@@ -55,6 +55,7 @@ export interface Member {
   intro: string;
   goal: string;
   interests: string;
+  is_leader: boolean;
   created_at: string;
 }
 

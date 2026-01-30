@@ -11,6 +11,22 @@ interface MemberViewProps {
 }
 
 const MemberView: React.FC<MemberViewProps> = ({ members, onAdd, onEdit, onDelete, isLoading }) => {
+  const gradients = [
+    'from-pink-500 to-rose-500',
+    'from-purple-500 to-indigo-500',
+    'from-blue-500 to-cyan-500',
+    'from-emerald-500 to-teal-500',
+    'from-orange-500 to-amber-500',
+    'from-fuchsia-500 to-purple-600',
+    'from-sky-500 to-blue-600',
+    'from-violet-500 to-purple-500',
+  ];
+
+  const getGradient = (id: number, isLeader: boolean) => {
+    if (isLeader) return 'from-blue-600 via-indigo-600 to-purple-700';
+    return gradients[id % gradients.length];
+  };
+
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-full">
@@ -44,10 +60,10 @@ const MemberView: React.FC<MemberViewProps> = ({ members, onAdd, onEdit, onDelet
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {members.map((member) => (
-            <div key={member.id} className="bg-white dark:bg-gray-800 rounded-3xl shadow-md border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all group">
-              <div className="relative h-24 bg-gradient-to-r from-blue-500 to-indigo-600">
+            <div key={member.id} className={`bg-white dark:bg-gray-800 rounded-3xl shadow-md border overflow-hidden hover:shadow-xl transition-all group ${member.is_leader ? 'border-blue-500 ring-2 ring-blue-500/20' : 'border-gray-100 dark:border-gray-700'}`}>
+              <div className={`relative h-24 bg-gradient-to-r ${getGradient(member.id, member.is_leader)}`}>
                 <div className="absolute -bottom-12 left-6">
-                  <div className="w-24 h-24 rounded-2xl overflow-hidden border-4 border-white dark:border-gray-800 shadow-lg bg-gray-100 dark:bg-gray-700">
+                  <div className={`w-24 h-24 rounded-2xl overflow-hidden border-4 shadow-lg bg-gray-100 dark:bg-gray-700 ${member.is_leader ? 'border-blue-500' : 'border-white dark:border-gray-800'}`}>
                     {member.avatar_url ? (
                       <img src={member.avatar_url} alt={member.name} className="w-full h-full object-cover" />
                     ) : (
@@ -57,6 +73,12 @@ const MemberView: React.FC<MemberViewProps> = ({ members, onAdd, onEdit, onDelet
                     )}
                   </div>
                 </div>
+                {member.is_leader && (
+                  <div className="absolute top-4 left-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-3 py-1 rounded-full shadow-sm flex items-center gap-1.5">
+                    <TrophyIcon className="w-3.5 h-3.5 text-yellow-500" />
+                    <span className="text-[10px] font-bold text-blue-700 dark:text-blue-300 uppercase tracking-tighter">랩장</span>
+                  </div>
+                )}
                 <div className="absolute top-4 right-4 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                   <button onClick={() => onEdit(member)} className="p-2 bg-white/20 hover:bg-white/30 backdrop-blur-md rounded-lg text-white transition-colors">
                     <PencilIcon className="w-4 h-4" />

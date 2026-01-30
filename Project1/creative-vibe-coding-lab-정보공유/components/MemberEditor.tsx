@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { XMarkIcon, CameraIcon } from '@heroicons/react/24/outline';
+import React, { useState, useEffect, useRef } from 'react';
+import { XMarkIcon, CameraIcon, UserCircleIcon } from '@heroicons/react/24/outline';
 import type { Member } from '../types';
 
 interface MemberEditorProps {
   isOpen: boolean;
   onClose: () => void;
-  onSave: (memberData: Omit<Member, 'id' | 'created_at'>) => void;
+  onSave: (memberData: Omit<Member, 'id' | 'created_at'>, file?: File | null) => void;
   memberToEdit: Member | null;
 }
 
@@ -16,6 +16,9 @@ const MemberEditor: React.FC<MemberEditorProps> = ({ isOpen, onClose, onSave, me
   const [intro, setIntro] = useState('');
   const [goal, setGoal] = useState('');
   const [interests, setInterests] = useState('');
+  const [isLeader, setIsLeader] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -26,6 +29,7 @@ const MemberEditor: React.FC<MemberEditorProps> = ({ isOpen, onClose, onSave, me
         setIntro(memberToEdit.intro || '');
         setGoal(memberToEdit.goal || '');
         setInterests(memberToEdit.interests || '');
+        setIsLeader(memberToEdit.is_leader || false);
       } else {
         setNickname('');
         setName('');
@@ -33,9 +37,25 @@ const MemberEditor: React.FC<MemberEditorProps> = ({ isOpen, onClose, onSave, me
         setIntro('');
         setGoal('');
         setInterests('');
+        setIsLeader(false);
       }
+      setSelectedFile(null);
     }
   }, [memberToEdit, isOpen]);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setSelectedFile(file);
+      // Create a temporary preview URL
+      const previewUrl = URL.createObjectURL(file);
+      setAvatarUrl(previewUrl);
+    }
+  };
+
+  const triggerFileInput = () => {
+    fileInputRef.current?.click();
+  };
 
   const handleSave = () => {
     if (!nickname.trim() || !name.trim()) {
@@ -50,7 +70,8 @@ const MemberEditor: React.FC<MemberEditorProps> = ({ isOpen, onClose, onSave, me
       intro,
       goal,
       interests,
-    });
+      is_leader: isLeader,
+    }, selectedFile);
     onClose();
   };
 
@@ -69,18 +90,49 @@ const MemberEditor: React.FC<MemberEditorProps> = ({ isOpen, onClose, onSave, me
         </div>
         
         <div className="p-6 space-y-4 max-h-[70vh] overflow-y-auto">
-          <div className="flex justify-center mb-6">
-            <div className="relative group">
-              <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-100 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600">
+          <div className="flex flex-col items-center mb-6">
+            <div 
+              onClick={triggerFileInput}
+              className="relative group cursor-pointer"
+            >
+              <div className="w-28 h-28 rounded-3xl overflow-hidden bg-gray-100 dark:bg-gray-700 border-2 border-dashed border-gray-300 dark:border-gray-600 flex items-center justify-center group-hover:border-blue-500 transition-colors">
                 {avatarUrl ? (
                   <img src={avatarUrl} alt="Preview" className="w-full h-full object-cover" />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-gray-400">
-                    <CameraIcon className="w-8 h-8" />
-                  </div>
+                  <UserCircleIcon className="w-16 h-16 text-gray-400" />
                 )}
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity rounded-3xl">
+                  <CameraIcon className="w-8 h-8 text-white" />
+                </div>
               </div>
+              <input 
+                type="file" 
+                ref={fileInputRef}
+                onChange={handleFileChange}
+                accept="image/*"
+                className="hidden"
+              />
             </div>
+            <p className="text-xs text-gray-500 mt-2">클릭하여 프로필 사진 선택</p>
+          </div>
+
+          <div className="flex items-center justify-between p-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-100 dark:border-blue-800">
+            <div className="flex items-center gap-2">
+              <span className="text-sm font-bold text-blue-700 dark:text-blue-300">랩장 여부</span>
+              <p className="text-[10px] text-blue-500 dark:text-blue-400">전체에서 단 한 명만 선택 가능합니다.</p>
+            </div>
+            <button
+              onClick={() => setIsLeader(!isLeader)}
+              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${
+                isLeader ? 'bg-blue-600' : 'bg-gray-200 dark:bg-gray-700'
+              }`}
+            >
+              <span
+                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                  isLeader ? 'translate-x-6' : 'translate-x-1'
+                }`}
+              />
+            </button>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
@@ -104,17 +156,6 @@ const MemberEditor: React.FC<MemberEditorProps> = ({ isOpen, onClose, onSave, me
                 placeholder="본명"
               />
             </div>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">프로필 이미지 URL</label>
-            <input
-              type="url"
-              value={avatarUrl}
-              onChange={(e) => setAvatarUrl(e.target.value)}
-              className="w-full px-3 py-2 border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="https://..."
-            />
           </div>
 
           <div>
