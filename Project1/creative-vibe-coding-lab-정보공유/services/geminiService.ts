@@ -2,7 +2,16 @@ import { GoogleGenAI, Type } from "@google/genai";
 import { LinkItem, ParsedMessage } from "../types";
 import { extractUrls } from "./chatParser";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const getApiKey = () => {
+  // 1. Try Vite environment variable (Browser)
+  if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_GEMINI_API_KEY) {
+    return import.meta.env.VITE_GEMINI_API_KEY;
+  }
+  // 2. Try Node.js environment variables (Script)
+  return process.env.VITE_GEMINI_API_KEY || process.env.API_KEY || process.env.GEMINI_API_KEY || '';
+};
+
+const ai = new GoogleGenAI({ apiKey: getApiKey() });
 
 // Simple hash function for browser environment
 function generateStableId(str: string): string {
@@ -65,8 +74,7 @@ async function processBatch(items: any[]): Promise<AIProcessedItem[]> {
     1. Focus on the 'targetUrl' as the primary content source.
     2. Use 'fullMessage' to understand the context of why it was shared.
     3. Title: Create a concise, descriptive title in KOREAN for the 'targetUrl' content.
-    4. Category: Choose one of ["스터디", "개인 프로젝트", "AI 뉴스", "개발 툴", "튜토리얼", "디자인", "일반", "커리어", "기타"] in KOREAN.
-       * CRITICAL: If the message context implies the sender created the content (e.g., "I made this", "my toy project", "제 포트폴리오입니다", "만들어봤습니다", "결과물 공유"), you MUST categorize it as "개인 프로젝트".
+    4. Category: Choose one of ["스터디", "AI 뉴스", "개발 툴", "튜토리얼", "디자인", "일반", "커리어", "기타"] in KOREAN.
        * If the message is about recruiting for a study group, sharing study materials, or related to a study session (e.g., "스터디", "함께 공부", "모집"), categorize it as "스터디".
        * If the 'targetUrl' is for a Google Spreadsheet ('docs.google.com/spreadsheets') or Google Presentation ('docs.google.com/presentation'), you MUST categorize it as "스터디".
     5. Summary: Write a 1-sentence summary in KOREAN explaining the link.
@@ -93,17 +101,39 @@ async function processBatch(items: any[]): Promise<AIProcessedItem[]> {
 
   try {
     console.log(`[Batch] Calling Gemini API (Model: gemini-2.0-flash) | Key Prefix: ${process.env.API_KEY?.substring(0, 5)}...`);
-    const response = await ai.models.generateContent({
-      model: "gemini-2.0-flash", // Using a stable model version
-      contents: prompt,
-      config: {
-        responseMimeType: "application/json",
-        responseSchema: responseSchema,
-      },
-    });
+    
+    // Retry logic for 429 errors
+    let attempt = 0;
+    const maxAttempts = 3;
+    const baseDelay = 2000; // 2 seconds
 
-    const parsed = JSON.parse(response.text || "[]");
-    return Array.isArray(parsed) ? parsed : [];
+    while (attempt < maxAttempts) {
+      try {
+        const response = await ai.models.generateContent({
+          model: "gemini-2.0-flash",
+          contents: prompt,
+          config: {
+            responseMimeType: "application/json",
+            responseSchema: responseSchema,
+          },
+        });
+
+        const parsed = JSON.parse(response.text || "[]");
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (error: any) {
+        attempt++;
+        if (error?.status === 429 || error?.message?.includes('429')) {
+          if (attempt < maxAttempts) {
+            const delay = baseDelay * Math.pow(2, attempt);
+            console.warn(`[Batch] Rate limit hit (429). Retrying in ${delay/1000}s... (Attempt ${attempt}/${maxAttempts})`);
+            await new Promise(resolve => setTimeout(resolve, delay));
+            continue;
+          }
+        }
+        throw error; // Re-throw if not 429 or max attempts reached
+      }
+    }
+    return [];
   } catch (error) {
     console.error("Batch processing error:", error);
     return [];
@@ -142,7 +172,7 @@ export const processMessagesWithGemini = async (messages: ParsedMessage[]): Prom
   console.log(`Total links found: ${rawItems.length}. Processing in batches...`);
 
   // Process in batches to avoid token limits and ensure reliability
-  const BATCH_SIZE = 20;
+  const BATCH_SIZE = 30;
   const processedData: AIProcessedItem[] = [];
 
   for (let i = 0; i < rawItems.length; i += BATCH_SIZE) {
@@ -155,8 +185,8 @@ export const processMessagesWithGemini = async (messages: ParsedMessage[]): Prom
     
     // Optional: Small delay to be nice to the API rate limits
     if (i + BATCH_SIZE < rawItems.length) {
-      console.log("Processing next batch (1s delay)...");
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      console.log("Processing next batch (5s delay)...");
+      await new Promise(resolve => setTimeout(resolve, 5000));
     }
   }
 
@@ -214,9 +244,9 @@ export const generateJournalFromRawText = async (rawText: string): Promise<{ tit
     요구사항:
     1.  **제목 (title)**: 전체 내용을 대표하는 핵심적인 제목을 10~20자 내외의 한국어로 생성해주세요.
     2.  **내용 (content)**:
-        *   전체 텍스트를 간결하게 요약해주세요.
-        *   주요 논의사항, 결정사항, 공유된 기술 등을 중심으로 정리해주세요.
-        *   반드시 한국어와 마크다운 문법(예: '-', '*', '#')을 사용하여 가독성 좋게 작성해주세요.
+        *   전체 내용을 **아주 상세하고 구체적으로** 요약해주세요.
+        *   주요 논의사항, 결정사항, 공유된 기술 스택, 코드 스니펫, 향후 계획 등을 누락 없이 포함해주세요.
+        *   반드시 한국어와 마크다운 문법(예: '-', '*', '#', '\`', '***')을 사용하여 가독성 좋고 전문적인 보고서 형식으로 작성해주세요.
 
     원본 텍스트:
     ---

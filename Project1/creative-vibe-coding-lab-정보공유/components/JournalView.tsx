@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { PencilIcon, TrashIcon, PlusIcon } from '@heroicons/react/24/outline';
-import type { Journal } from '../types'; // Journal 타입을 정의해야 합니다.
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import type { Journal } from '../types';
 
 interface JournalViewProps {
   journals: Journal[];
@@ -38,35 +40,45 @@ const JournalView: React.FC<JournalViewProps> = ({ journals, onAdd, onEdit, onDe
           <p className="text-gray-400 text-sm mt-2">첫 번째 일지를 작성해보세요!</p>
         </div>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-6">
           {journals.map((journal) => (
-            <div key={journal.id} className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+            <div key={journal.id} className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
               <div className="flex justify-between items-start">
-                <div>
-                  <h3 className="font-bold text-lg text-gray-900 dark:text-white">{journal.title}</h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-                    {new Date(journal.created_at).toLocaleDateString('ko-KR')}
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-bold text-xl text-gray-900 dark:text-white mb-1">{journal.title}</h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+                    {new Date(journal.created_at).toLocaleDateString('ko-KR', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                      weekday: 'long'
+                    })}
                   </p>
-                  <p className="text-gray-700 dark:text-gray-300 whitespace-pre-wrap">{journal.content}</p>
+                  
+                  <div className="markdown-body prose prose-sm dark:prose-invert max-w-none mb-4">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {journal.content || ''}
+                    </ReactMarkdown>
+                  </div>
                   
                   {journal.raw_content && (
-                    <details className="mt-3 group">
-                      <summary className="cursor-pointer text-sm font-medium text-gray-500 dark:text-gray-400 group-hover:text-blue-600">
-                        원문 펼쳐보기
+                    <details className="mt-4 group border-t dark:border-gray-700 pt-3">
+                      <summary className="cursor-pointer text-sm font-medium text-gray-400 dark:text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                        원본 데이터 (Raw Text) 확인
                       </summary>
-                      <div className="mt-2 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-md border dark:border-gray-600">
-                        <p className="text-sm text-gray-600 dark:text-gray-300 whitespace-pre-wrap">
+                      <div className="mt-2 p-4 bg-gray-50 dark:bg-gray-900/50 rounded-lg border dark:border-gray-700">
+                        <p className="text-xs text-gray-600 dark:text-gray-400 whitespace-pre-wrap leading-relaxed">
                           {journal.raw_content}
                         </p>
                       </div>
                     </details>
                   )}
                 </div>
-                <div className="flex gap-2 flex-shrink-0 ml-4">
-                  <button onClick={() => onEdit(journal)} className="p-2 text-gray-500 hover:text-blue-600 transition-colors">
+                <div className="flex gap-1 flex-shrink-0 ml-4">
+                  <button onClick={() => onEdit(journal)} className="p-2 text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" title="수정">
                     <PencilIcon className="w-5 h-5" />
                   </button>
-                  <button onClick={() => onDelete(journal.id)} className="p-2 text-gray-500 hover:text-red-600 transition-colors">
+                  <button onClick={() => onDelete(journal.id)} className="p-2 text-gray-400 hover:text-red-600 transition-colors" title="삭제">
                     <TrashIcon className="w-5 h-5" />
                   </button>
                 </div>

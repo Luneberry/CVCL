@@ -38,6 +38,15 @@ export interface Journal {
   created_at: string;
 }
 
+export interface Project {
+  id: number;
+  title: string;
+  author: string;
+  url: string;
+  description?: string;
+  created_at: string;
+}
+
 export enum ViewMode {
   Grid = 'GRID',
   List = 'LIST'

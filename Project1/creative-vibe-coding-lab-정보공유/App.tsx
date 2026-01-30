@@ -12,10 +12,12 @@ import LinkCard from './components/LinkCard';
 import PostDetail from './components/PostDetail';
 import JournalView from './components/JournalView';
 import JournalEditor from './components/JournalEditor';
+import ProjectView from './components/ProjectView';
+import ProjectEditor from './components/ProjectEditor';
 import { parseChatFile } from './services/chatParser';
 import { processMessagesWithGemini } from './services/geminiService';
 import { supabase } from './services/supabaseClient';
-import { LinkItem, Comment, Journal } from './types';
+import { LinkItem, Comment, Journal, Project } from './types';
 
 console.log("URL 체크:", import.meta.env.VITE_SUPABASE_URL);
 
@@ -24,12 +26,13 @@ const App: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isDesktopSidebarOpen, setIsDesktopSidebarOpen] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [view, setView] = useState<'archive' | 'journal'>('archive');
+  const [view, setView] = useState<'archive' | 'journal' | 'project'>('archive');
   
   // Data State
   const [currentSession, setCurrentSession] = useState<number>(5);
   const [items, setItems] = useState<LinkItem[]>([]);
   const [journals, setJournals] = useState<Journal[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
   
   // Archive View State
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -39,10 +42,15 @@ const App: React.FC = () => {
   // Journal View State
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [journalToEdit, setJournalToEdit] = useState<Journal | null>(null);
+
+  // Project View State
+  const [isProjectEditorOpen, setIsProjectEditorOpen] = useState(false);
+  const [projectToEdit, setProjectToEdit] = useState<Project | null>(null);
   
   // Loading/Processing State
   const [isProcessing, setIsProcessing] = useState(false);
   const [isJournalLoading, setIsJournalLoading] = useState(false);
+  const [isProjectLoading, setIsProjectLoading] = useState(false);
   const [dragActive, setDragActive] = useState(false);
 
   // --- Data Loading Effects ---
@@ -92,6 +100,29 @@ const App: React.FC = () => {
       fetchJournals();
     }
   }, [view, fetchJournals]);
+
+  // Load Projects Data
+  const fetchProjects = useCallback(async () => {
+    setIsProjectLoading(true);
+    const { data, error } = await supabase
+      .from('projects')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      console.error('Error fetching projects:', error);
+      // alert(`프로젝트를 불러오는 데 실패했습니다: ${error.message}`); // Optional: Suppress if table doesn't exist yet
+    } else {
+      setProjects(data || []);
+    }
+    setIsProjectLoading(false);
+  }, []);
+
+  useEffect(() => {
+    if (view === 'project') {
+      fetchProjects();
+    }
+  }, [view, fetchProjects]);
 
   // Load comments from Supabase for LinkItems
   useEffect(() => {
@@ -203,6 +234,40 @@ const App: React.FC = () => {
       if (error) alert('저장에 실패했습니다.');
     }
     fetchJournals(); // Refetch list
+  };
+
+  // --- Project Handlers ---
+
+  const handleAddProject = () => {
+    setProjectToEdit(null);
+    setIsProjectEditorOpen(true);
+  };
+
+  const handleEditProject = (project: Project) => {
+    setProjectToEdit(project);
+    setIsProjectEditorOpen(true);
+  };
+
+  const handleDeleteProject = async (id: number) => {
+    if (window.confirm('정말로 이 프로젝트를 삭제하시겠습니까?')) {
+      const { error } = await supabase.from('projects').delete().eq('id', id);
+      if (error) {
+        alert('삭제에 실패했습니다.');
+      } else {
+        setProjects(prev => prev.filter(p => p.id !== id));
+      }
+    }
+  };
+
+  const handleSaveProject = async (projectData: Omit<Project, 'id' | 'created_at'>) => {
+    if (projectToEdit) { // Update
+      const { error } = await supabase.from('projects').update(projectData).eq('id', projectToEdit.id);
+      if (error) alert('수정에 실패했습니다.');
+    } else { // Create
+      const { error } = await supabase.from('projects').insert([projectData]);
+      if (error) alert('저장에 실패했습니다.');
+    }
+    fetchProjects(); // Refetch list
   };
 
   // --- Derived State & Memos ---
@@ -323,10 +388,21 @@ const App: React.FC = () => {
               />
             )}
 
+            {view === 'project' && (
+              <ProjectView 
+                projects={projects}
+                onAdd={handleAddProject}
+                onEdit={handleEditProject}
+                onDelete={handleDeleteProject}
+                isLoading={isProjectLoading}
+              />
+            )}
+
           </main>
 
           {activeItem && <PostDetail item={activeItem} onClose={() => setSelectedItem(null)} onAddComment={addComment} />}
           <JournalEditor isOpen={isEditorOpen} onClose={() => setIsEditorOpen(false)} onSave={handleSaveJournal} journalToEdit={journalToEdit} sessionId={currentSession} />
+          <ProjectEditor isOpen={isProjectEditorOpen} onClose={() => setIsProjectEditorOpen(false)} onSave={handleSaveProject} projectToEdit={projectToEdit} />
         </div>
       </div>
     </div>

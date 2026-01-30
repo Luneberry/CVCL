@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDownIcon, ChevronRightIcon, Bars3Icon, LinkIcon, BookOpenIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon, ChevronRightIcon, Bars3Icon, LinkIcon, BookOpenIcon, RocketLaunchIcon } from '@heroicons/react/24/outline';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -11,8 +11,8 @@ interface SidebarProps {
   onSelectSession: (session: number) => void;
   isDesktopOpen: boolean;
   onToggleDesktop: () => void;
-  view: 'archive' | 'journal';
-  onSetView: (view: 'archive' | 'journal') => void;
+  view: 'archive' | 'journal' | 'project';
+  onSetView: (view: 'archive' | 'journal' | 'project') => void;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ 
@@ -30,7 +30,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 }) => {
   const [isSessionListOpen, setIsSessionListOpen] = useState(true);
 
-  const handleSetView = (newView: 'archive' | 'journal') => {
+  const handleSetView = (newView: 'archive' | 'journal' | 'project') => {
     onSetView(newView);
     onCloseMobile();
   };
@@ -134,6 +134,17 @@ const Sidebar: React.FC<SidebarProps> = ({
             >
               <BookOpenIcon className="w-5 h-5 mr-3" />
               <span>모임일지</span>
+            </button>
+            <button 
+              onClick={() => handleSetView('project')}
+              className={`w-full text-left px-4 py-2 rounded-lg transition-colors flex items-center ${
+                view === 'project'
+                  ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 font-medium' 
+                  : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+              }`}
+            >
+              <RocketLaunchIcon className="w-5 h-5 mr-3" />
+              <span>개인 프로젝트</span>
             </button>
           </div>
 
