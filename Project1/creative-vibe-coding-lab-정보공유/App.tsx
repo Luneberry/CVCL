@@ -17,6 +17,8 @@ import { processMessagesWithGemini } from './services/geminiService';
 import { supabase } from './services/supabaseClient';
 import { LinkItem, Comment, Journal } from './types';
 
+console.log("URL 체크:", import.meta.env.VITE_SUPABASE_URL);
+
 const App: React.FC = () => {
   // UI State
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
