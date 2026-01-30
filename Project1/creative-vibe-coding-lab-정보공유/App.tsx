@@ -14,10 +14,12 @@ import JournalView from './components/JournalView';
 import JournalEditor from './components/JournalEditor';
 import ProjectView from './components/ProjectView';
 import ProjectEditor from './components/ProjectEditor';
+import MemberView from './components/MemberView';
+import MemberEditor from './components/MemberEditor';
 import { parseChatFile } from './services/chatParser';
 import { processMessagesWithGemini } from './services/geminiService';
 import { supabase } from './services/supabaseClient';
-import { LinkItem, Comment, Journal, Project } from './types';
+import { LinkItem, Comment, Journal, Project, Member } from './types';
 
 console.log("URL 체크:", import.meta.env.VITE_SUPABASE_URL);
 
@@ -26,13 +28,14 @@ const App: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isDesktopSidebarOpen, setIsDesktopSidebarOpen] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [view, setView] = useState<'archive' | 'journal' | 'project'>('archive');
+  const [view, setView] = useState<'archive' | 'journal' | 'project' | 'member'>('archive');
   
   // Data State
   const [currentSession, setCurrentSession] = useState<number>(5);
   const [items, setItems] = useState<LinkItem[]>([]);
   const [journals, setJournals] = useState<Journal[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
+  const [members, setMembers] = useState<Member[]>([]);
   
   // Archive View State
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -46,11 +49,16 @@ const App: React.FC = () => {
   // Project View State
   const [isProjectEditorOpen, setIsProjectEditorOpen] = useState(false);
   const [projectToEdit, setProjectToEdit] = useState<Project | null>(null);
+
+  // Member View State
+  const [isMemberEditorOpen, setIsMemberEditorOpen] = useState(false);
+  const [memberToEdit, setMemberToEdit] = useState<Member | null>(null);
   
   // Loading/Processing State
   const [isProcessing, setIsProcessing] = useState(false);
   const [isJournalLoading, setIsJournalLoading] = useState(false);
   const [isProjectLoading, setIsProjectLoading] = useState(false);
+  const [isMemberLoading, setIsMemberLoading] = useState(false);
   const [dragActive, setDragActive] = useState(false);
 
   // --- Data Loading Effects ---
@@ -123,6 +131,28 @@ const App: React.FC = () => {
       fetchProjects();
     }
   }, [view, fetchProjects]);
+
+  // Load Members Data
+  const fetchMembers = useCallback(async () => {
+    setIsMemberLoading(true);
+    const { data, error } = await supabase
+      .from('members')
+      .select('*')
+      .order('created_at', { ascending: true });
+
+    if (error) {
+      console.error('Error fetching members:', error);
+    } else {
+      setMembers(data || []);
+    }
+    setIsMemberLoading(false);
+  }, []);
+
+  useEffect(() => {
+    if (view === 'member') {
+      fetchMembers();
+    }
+  }, [view, fetchMembers]);
 
   // Load comments from Supabase for LinkItems
   useEffect(() => {
@@ -270,6 +300,40 @@ const App: React.FC = () => {
     fetchProjects(); // Refetch list
   };
 
+  // --- Member Handlers ---
+
+  const handleAddMember = () => {
+    setMemberToEdit(null);
+    setIsMemberEditorOpen(true);
+  };
+
+  const handleEditMember = (member: Member) => {
+    setMemberToEdit(member);
+    setIsMemberEditorOpen(true);
+  };
+
+  const handleDeleteMember = async (id: number) => {
+    if (window.confirm('정말로 이 멤버를 삭제하시겠습니까?')) {
+      const { error } = await supabase.from('members').delete().eq('id', id);
+      if (error) {
+        alert('삭제에 실패했습니다.');
+      } else {
+        setMembers(prev => prev.filter(m => m.id !== id));
+      }
+    }
+  };
+
+  const handleSaveMember = async (memberData: Omit<Member, 'id' | 'created_at'>) => {
+    if (memberToEdit) { // Update
+      const { error } = await supabase.from('members').update(memberData).eq('id', memberToEdit.id);
+      if (error) alert('수정에 실패했습니다.');
+    } else { // Create
+      const { error } = await supabase.from('members').insert([memberData]);
+      if (error) alert('저장에 실패했습니다.');
+    }
+    fetchMembers(); // Refetch list
+  };
+
   // --- Derived State & Memos ---
   
   const activeItem = useMemo(() => items.find(i => i.id === selectedItem?.id) || null, [items, selectedItem]);
@@ -338,6 +402,16 @@ const App: React.FC = () => {
 
           <main className="flex-1 overflow-y-auto" onDragEnter={handleDrag}>
             
+            {view === 'member' && (
+              <MemberView 
+                members={members}
+                onAdd={handleAddMember}
+                onEdit={handleEditMember}
+                onDelete={handleDeleteMember}
+                isLoading={isMemberLoading}
+              />
+            )}
+
             {view === 'archive' && (
               <div className="p-4 md:p-8">
                 {isProcessing ? (
@@ -403,6 +477,7 @@ const App: React.FC = () => {
           {activeItem && <PostDetail item={activeItem} onClose={() => setSelectedItem(null)} onAddComment={addComment} />}
           <JournalEditor isOpen={isEditorOpen} onClose={() => setIsEditorOpen(false)} onSave={handleSaveJournal} journalToEdit={journalToEdit} sessionId={currentSession} />
           <ProjectEditor isOpen={isProjectEditorOpen} onClose={() => setIsProjectEditorOpen(false)} onSave={handleSaveProject} projectToEdit={projectToEdit} />
+          <MemberEditor isOpen={isMemberEditorOpen} onClose={() => setIsMemberEditorOpen(false)} onSave={handleSaveMember} memberToEdit={memberToEdit} />
         </div>
       </div>
     </div>

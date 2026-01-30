@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDownIcon, ChevronRightIcon, Bars3Icon, LinkIcon, BookOpenIcon, RocketLaunchIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon, ChevronRightIcon, Bars3Icon, LinkIcon, BookOpenIcon, RocketLaunchIcon, UserCircleIcon } from '@heroicons/react/24/outline';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -11,8 +11,8 @@ interface SidebarProps {
   onSelectSession: (session: number) => void;
   isDesktopOpen: boolean;
   onToggleDesktop: () => void;
-  view: 'archive' | 'journal' | 'project';
-  onSetView: (view: 'archive' | 'journal' | 'project') => void;
+  view: 'archive' | 'journal' | 'project' | 'member';
+  onSetView: (view: 'archive' | 'journal' | 'project' | 'member') => void;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ 
@@ -30,7 +30,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 }) => {
   const [isSessionListOpen, setIsSessionListOpen] = useState(true);
 
-  const handleSetView = (newView: 'archive' | 'journal' | 'project') => {
+  const handleSetView = (newView: 'archive' | 'journal' | 'project' | 'member') => {
     onSetView(newView);
     onCloseMobile();
   };
@@ -113,6 +113,17 @@ const Sidebar: React.FC<SidebarProps> = ({
           {/* View Switcher */}
           <div className="mt-8 space-y-1">
             <h3 className="px-4 mb-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">메뉴</h3>
+            <button 
+              onClick={() => handleSetView('member')}
+              className={`w-full text-left px-4 py-2 rounded-lg transition-colors flex items-center ${
+                view === 'member'
+                  ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 font-medium' 
+                  : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+              }`}
+            >
+              <UserCircleIcon className="w-5 h-5 mr-3" />
+              <span>멤버 소개</span>
+            </button>
             <button 
               onClick={() => handleSetView('archive')}
               className={`w-full text-left px-4 py-2 rounded-lg transition-colors flex items-center ${

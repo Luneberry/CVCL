@@ -140,7 +140,7 @@ async function processBatch(items: any[]): Promise<AIProcessedItem[]> {
   }
 }
 
-export const processMessagesWithGemini = async (messages: ParsedMessage[]): Promise<LinkItem[]> => {
+export const processMessagesWithGemini = async (messages: ParsedMessage[], excludedUrls: string[] = []): Promise<LinkItem[]> => {
   // Flatten messages: If a message has 3 links, create 3 separate items to process.
   const rawItems: any[] = [];
 
@@ -150,6 +150,11 @@ export const processMessagesWithGemini = async (messages: ParsedMessage[]): Prom
     const uniqueUrls = Array.from(new Set(urls));
 
     uniqueUrls.forEach((url) => {
+      // Skip if URL is in the excluded list (e.g., already registered as a personal project)
+      if (excludedUrls.some(ex => url.includes(ex) || ex.includes(url))) {
+        return;
+      }
+
       // Create a deterministic ID
       const idString = `${msg.date}|${msg.time}|${msg.sender}|${url}`;
       const stableId = generateStableId(idString);

@@ -47,10 +47,19 @@ async function main() {
     // Dynamic import to ensure env vars are set before service initialization
     const { parseChatFile } = await import('../services/chatParser');
     const { processMessagesWithGemini } = await import('../services/geminiService');
+    const { supabase } = await import('../services/supabaseClient');
 
     const INPUT_FILE = 'KakaoTalk_group.txt';
     const OUTPUT_DIR = path.join(process.cwd(), 'public', 'data');
     const OUTPUT_FILE = path.join(OUTPUT_DIR, 'session-5.json');
+
+    console.log('Fetching existing personal projects from Supabase to exclude duplicates...');
+    const { data: projects, error: projectError } = await supabase
+      .from('projects')
+      .select('url');
+    
+    const excludedUrls = projects?.map(p => p.url).filter(Boolean) || [];
+    console.log(`Found ${excludedUrls.length} existing projects to exclude.`);
 
     console.log(`Reading input file: ${INPUT_FILE}`);
     const filePath = path.resolve(process.cwd(), INPUT_FILE);
@@ -72,7 +81,7 @@ async function main() {
     }
 
     console.log('Processing with Gemini (this may take a moment)...');
-    const processedItems = await processMessagesWithGemini(parsedMessages);
+    const processedItems = await processMessagesWithGemini(parsedMessages, excludedUrls);
     
     // Create output directory if it doesn't exist
     if (!fs.existsSync(OUTPUT_DIR)) {

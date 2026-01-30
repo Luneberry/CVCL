@@ -1,5 +1,5 @@
 Creative vibe coding Lab 님과 카카오톡 대화
-저장한 날짜 : 2026-01-30 10:30:38
+저장한 날짜 : 2026-01-30 16:12:56
 
 --------------- 2026년 1월 15일 목요일 ---------------
 한태재님이 신영환 Simon님, 하두진님, 송명진님, 이정우님, 홍유진(Lucy)님, 김관우님, Drone님, Yongjin님, .님, 지현님, 설리님, 홍채영님, 정 주애님, 김용민님, cyberprophet님, 이용호님, Kim daegun님, 정희수님, han님을 초대했습니다.
@@ -1190,3 +1190,52 @@ https://www.kuku.mom/
 [Drone] [오전 10:27] Claude Skill 공식 가이드북
 
 https://claude.com/blog/complete-guide-to-building-skills-for-claude
+[Yongjin] [오전 10:37] 네. 알겠습니다. 
+[Drone] [오전 10:43] 요즈음 엄청 핫한 ㅋㅋ MoltBot에 대한 개념 정리를 잘한 영상입니다. 참고하시기 바랍니다.
+
+https://youtu.be/wPi-NTdTIpc
+[Drone] [오전 11:14] AI Seoul 2026
+
+https://youtu.be/bj6R4VdEVR0
+[Drone] [오전 11:36] * Deep Agent Builder with 자연어 with 테디노트
+
+  - https://youtu.be/QI2KVJ2ciiY
+
+< 주요 기능 >
+- 자연어로 에이전트 생성
+- 다양한 모델 Provider 지원: OpenAI, Anthropic, Google, Azure OpenAI, AWS Bedrock, K-EXAONE, Upstage Solar 100B
+- MCP 를 비롯한 다양한 도구, 미들웨어 지원
+- 멀티 에이전트 (서브 에이전트 추가 가능)
+- 에이전트 마켓 플레이스
+- PC 에이전트(데스크톱 앱): 샌드박스 환경
+- PC 에이전트 & 서브 에이전트 연동 지원
+- 백그라운드 모드
+- Slack 메신저 연동
+- 코드 연동(HTTP, Python, Javascript, OpenAI compatible, LangChain 등)
+
+✅ 베타 테스트 신청: https://forms.gle/9CAux6whQVw9rugF9
+[Drone] [오전 11:46] * AI-Driven Development Lifecycle (AI-DLC) 방법론 정의서
+
+  - https://serithemage.github.io/AI-DLC/
+[Drone] [오후 12:33] https://youtu.be/0WfK3hlxUK8
+[한태재] [오후 1:36] 어제 잠깐 이야기했던 클로드코드 플랜모드 @나유진 한번 사용해보세요 또 신세계입니다 ㅎㅎ max플랜인데 플랜모드를 사용안하시다니 ㅋㅋㅋ 다른분들도 클로드코드 플랜모드로 사용해보세요 https://buffett-story.tistory.com/m/2579
+[나유진] [오후 1:38] 오예 감사합니다~
+[한태재] [오후 1:40] 한번 플랜정리하고 auto accept 해놓고 밥먹고오면 장시간 10-30분 작업도 한번에 다 해놓더라고요 
+[한태재] [오후 1:41] 지금도 플랜모드 돌려놓고 채팅중입니다
+[나유진] [오후 1:42] 오 한번 해볼게요!
+[Drone] [오후 1:58] Plan Mode 사용은 필수입니다. ㅎㅎㅎ
+[한태재] [오후 2:13] 사진
+[한태재] [오후 2:13] Shift+tab 변경
+[지현] [오후 2:27] ㅎㅎ.. 많이 늦었습니다.. gemini가 3-pro 모델도 한도를 걸어서 불안정했었어요..
+모임일지와 개인프로젝트 란도 같이 추가했습니다. 개인프로젝트에는 본인이 만드시고 배포하신 링크 공유해주시면 다 같이 볼 수 있도록 설정해 두었습니다!
+아이디어 있으시면 공유해주세요~
+https://cvcl.vercel.app/
+[한태재] [오후 2:30] 쩌네여 긋 감사합니다
+[한태재] [오후 2:30] (헤헤)
+[Drone] [오후 2:56] 지현닝! 너무 감사드리고 수고하셨습니다.
+[Drone] [오후 3:09] 이분 Claude Code 기초부터 차근차근 잘 알려주는 것 같아요.
+
+https://www.linkedin.com/posts/hyeseon-yoon-01b635120_linkedin-activity-7421310945009807360-mOTF
+[Drone] [오후 3:23] 시리즈 형식으로 되어 있어서 이전 게시글 찾아보시면 되겠습니다.
+[한태재] [오후 3:36] 멤버 소개도 각자 등록할수 있는 부분이 있으면 좋을것 같아요! 
+[지현] [오후 3:37] 이모티콘

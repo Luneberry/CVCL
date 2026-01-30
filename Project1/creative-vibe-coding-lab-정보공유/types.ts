@@ -47,6 +47,17 @@ export interface Project {
   created_at: string;
 }
 
+export interface Member {
+  id: number;
+  nickname: string;
+  name: string;
+  avatar_url?: string;
+  intro: string;
+  goal: string;
+  interests: string;
+  created_at: string;
+}
+
 export enum ViewMode {
   Grid = 'GRID',
   List = 'LIST'
