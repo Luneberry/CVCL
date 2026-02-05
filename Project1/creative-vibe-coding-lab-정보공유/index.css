@@ -12,6 +12,11 @@ body {
 .markdown-body {
   line-height: 1.6;
   word-wrap: break-word;
+  color: #24292e;
+}
+
+.dark .markdown-body {
+  color: #e6edf3;
 }
 
 .markdown-body h1 {
@@ -21,6 +26,12 @@ body {
   margin-bottom: 16px;
   border-bottom: 1px solid #eaecef;
   padding-bottom: 0.3em;
+  color: #1f2328;
+}
+
+.dark .markdown-body h1 {
+  color: #f0f6fc;
+  border-bottom-color: #30363d;
 }
 
 .markdown-body h2 {
@@ -30,6 +41,12 @@ body {
   margin-bottom: 16px;
   border-bottom: 1px solid #eaecef;
   padding-bottom: 0.3em;
+  color: #1f2328;
+}
+
+.dark .markdown-body h2 {
+  color: #f0f6fc;
+  border-bottom-color: #30363d;
 }
 
 .markdown-body h3 {
@@ -37,6 +54,11 @@ body {
   font-weight: 600;
   margin-top: 24px;
   margin-bottom: 16px;
+  color: #1f2328;
+}
+
+.dark .markdown-body h3 {
+  color: #f0f6fc;
 }
 
 .markdown-body p {
@@ -61,6 +83,10 @@ body {
   background-color: rgba(175, 184, 193, 0.2);
   border-radius: 6px;
   font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+}
+
+.dark .markdown-body code {
+  background-color: rgba(110, 118, 129, 0.4);
 }
 
 .markdown-body pre {

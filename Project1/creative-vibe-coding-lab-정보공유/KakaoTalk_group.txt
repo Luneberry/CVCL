@@ -1,5 +1,5 @@
 Creative vibe coding Lab 님과 카카오톡 대화
-저장한 날짜 : 2026-01-30 16:12:56
+저장한 날짜 : 2026-02-05 13:43:17
 
 --------------- 2026년 1월 15일 목요일 ---------------
 한태재님이 신영환 Simon님, 하두진님, 송명진님, 이정우님, 홍유진(Lucy)님, 김관우님, Drone님, Yongjin님, .님, 지현님, 설리님, 홍채영님, 정 주애님, 김용민님, cyberprophet님, 이용호님, Kim daegun님, 정희수님, han님을 초대했습니다.
@@ -1239,3 +1239,240 @@ https://www.linkedin.com/posts/hyeseon-yoon-01b635120_linkedin-activity-74213109
 [Drone] [오후 3:23] 시리즈 형식으로 되어 있어서 이전 게시글 찾아보시면 되겠습니다.
 [한태재] [오후 3:36] 멤버 소개도 각자 등록할수 있는 부분이 있으면 좋을것 같아요! 
 [지현] [오후 3:37] 이모티콘
+[Drone] [오후 4:36] https://www.hankookilbo.com/news/article/A2026013010250000724
+[지현] [오후 6:03] Three.js 바이브 코딩 디자인 예제 링크입니다~
+https://x.com/C4RL05/status/2016921913046540575?s=20
+[Drone] [오후 6:05] 사진
+[Drone] [오후 6:05] https://www.instagram.com/p/DUF8zhQCOKa/
+[Drone] [오후 6:31] Boltbot 셀프 호스팅
+
+https://blog.cloudflare.com/moltworker-self-hosted-ai-agent/
+--------------- 2026년 1월 31일 토요일 ---------------
+[Drone] [오전 11:19] Claude ‘구독형’ 요금제가 API보다 최대 36배 저렴한 이유와 ‘Max 5x’가 진짜 최적 구간인 이유
+
+
+https://www.reddit.com/r/ClaudeAI/comments/1qpcj8q/claude_subscriptions_are_up_to_36x_cheaper_than/
+
+https://news.hada.io/topic?id=26256
+
+https://she-llac.com/claude-limits
+[cyberprophet] [오후 3:56] 클로드, 제미나이, 코덱스와 Google Stitch MCP Server 연결하는 간단한 방법
+* Windows WSL 터미널 or Mac 터미널
+npx -p stitch-mcp-auto stitch-mcp-auto-setup
+
+* OpenCode 연결은 .config/opencode/opencode.json에
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  "mcp": {
+    "stitch": {
+      "type": "local",
+      "command": ["npx", "-y", "stitch-mcp-auto"],
+      "enabled": true,
+      "environment": {
+        "GOOGLE_CLOUD_PROJECT": "$GOOGLE_CLOUD_PROJECT_ID"
+      }
+    }
+  }
+  . . .
+}
+mcp 블록을 추가하시고 터미널에 opencode mcp list 입력하시면 확인가능합니다.
+--------------- 2026년 2월 1일 일요일 ---------------
+[Drone] [오전 8:59] SuperAgent
+
+https://superagent.com/
+[Drone] [오전 9:01] System Architecture 설계 플랫폼
+
+https://www.archimyst.com/
+[김용민] [오전 9:17] https://x.com/bcherny/status/2017742741636321619?s=46&t=Bmn9jH07E2fkc7sAXnQLXw
+[김용민] [오전 9:19] Claude Code 창시자가 새로운 팁을 공유했습니다!
+[Drone] [오전 9:24] 바이브코딩 AI App Builder 추천
+
+https://blink.new/
+[Drone] [오전 9:27] AI 데이터 분석
+
+https://ada.im/
+[Drone] [오후 7:59] Top AI Coding Topics & Trends for 2026
+
+
+https://beyond.addy.ie/2026-trends/
+
+https://news.hada.io/topic?id=26277
+[Drone] [오후 7:59] Remotion Prompt Guide
+
+https://www.remotion.dev/docs/ai/claude-code
+[Drone] [오후 8:17] https://x.com/i/status/2017628464933753067
+--------------- 2026년 2월 2일 월요일 ---------------
+[Drone] [오전 10:53] 따릉이 개인정보 450만건 유출 (전체 가입자의 90%)
+
+2024년 4월쯤 발생한 것으로 추정
+
+https://www.boannews.com/media/view.asp?idx=141775
+[한태재] [오전 10:55] https://news.hada.io/topic?id=26330&utm_source=slack&utm_medium=bot&utm_campaign=T027E75U2P4
+[Drone] [오전 11:12] 한국형 에이전트 "봇마당"
+
+https://botmadang.org/
+[Drone] [오후 1:49] Pretty Prompt
+
+프롬프트 관련 서비스들도 엄청 나오네요~~
+
+https://www.pretty-prompt.com/
+[Drone] [오후 1:52] 바이브 코딩 시 디자인 레퍼런스 & 활용 사이트 현황
+
+
+- 3d design 히어로 섹션 참고용 : https://spline.design/
+
+- 랜딩페이지 히어로 섹션 참고용 : https://www.supahero.io/
+
+- 아이콘 모음 : https://iconify.design/
+
+- 대시보드 관련 : https://bentogrids.com/
+
+- 여러 레퍼런스 : https://dribbble.com/
+
+- 바이브 디자인 : https://app.superdesign.dev/
+
+- Mobbin 오픈소스 디자인 UI Components : https://www.monet.design/
+
+[Drone] [오후 1:59] UI Generator
+
+https://flowstep.ai/
+[지현] [오후 2:01] three.js 강의 커뮤니티 링크 공유드립니다~
+강의도 있고, 학생들 작업물 링크 전시하는 공간도 있네요!
+https://threejs-journey.com/highlights/1
+[Drone] [오후 4:38] Claude 무료 교육 현황
+
+
+- 프로젝트: https://claude.com/resources/tutorials/intro-to-projects
+
+- 클로드 엑셀: https://claude.com/resources/tutorials/getting-started-with-claude-in-excel 
+   >> 세무: https://claude.com/resources/tutorials/how-to-use-claude-in-excel-for-accounting-revenue-model-validation
+  >> HR: https://claude.com/resources/tutorials/how-to-use-claude-in-excel-for-hr-headcount-planning
+
+- 클로드 확장 프로그램: https://claude.com/resources/tutorials/simplify-your-browsing-experience-with-claude-for-chrome
+
+- 파일을 만들고 수정하기: https://claude.com/resources/tutorials/create-and-edit-files-with-claude-to-eliminate-hours-of-busy-work
+
+- 가장 똑똑한 Opus 4.5 쓰는 법: https://claude.com/resources/tutorials/applying-claude-opus-4-5s-strengths-to-your-everyday-work
+
+- 앱 연결하기: https://claude.com/resources/tutorials/getting-started-with-connectors
+
+- 클로드 코워크: https://claude.com/resources/tutorials/claude-cowork-a-research-preview
+--------------- 2026년 2월 3일 화요일 ---------------
+[Drone] [오전 12:16] 파일: The-Complete-Guide-to-Building-Skill-for-Claude.pdf
+[Drone] [오전 12:46] * MonsterWriter
+
+한시적 배포 중 (서두르세요~~)
+
+- Site : https://www.monsterwriter.com/
+
+- 구매 : https://wolfoliver.gumroad.com/l/monsterwriter
+
+- Discount Code : APPHOOKUP2026
+[Drone] [오전 10:39] Google Genie 3가 엄청나네요
+
+https://www.threads.com/@choi.openai/post/DUQOf1yDT-m
+[Drone] [오전 10:42] OpenClaw 사용자들은 malware 조심하시기 바랍니다. ㅎㅎ
+
+https://securityaffairs.com/187562/malware/moltbot-skills-exploited-to-distribute-400-malware-packages-in-days.html
+[Drone] [오전 10:48] NanoBot (초경량이라고 하네요~~)
+
+https://github.com/HKUDS/nanobot
+
+https://news.hada.io/topic?id=26341
+
+[Drone] [오전 10:52] 머슴들의 휴식 공간 (AI 에이전트 놀이터)
+
+https://www.mersoom.com/
+
+[김관우] [오전 11:31] []'\
+[Drone] [오후 1:35] 미리캔버스로 영상 생성하는 방법
+
+https://afterworkai.club/blog/short-form-video-creation-with-mirae-canvas
+--------------- 2026년 2월 4일 수요일 ---------------
+[Drone] [오전 2:05] Product Hunt for the Agent
+
+한동안은 OpenClaw 덕분에 이런 서비스들이 줄지어 나올 것 같아요
+
+https://www.molthunt.com/
+[Drone] [오전 2:07] Easy Installer for OpenClaw Agents
+
+인기 좋네요 ㅎㅎ
+
+https://www.easyclaw.app/
+[Drone] [오전 9:36] ✅"이게 정말 제가 만든 건가요?"  딸깍으로 나만의 앱을 갖는 법 (구글 AI스튜디오)
+
+어느 날 갑자기 머릿속에 번뜩이는 아이디어가 떠올랐다고 가정해 봅시다. 💡
+ "매일 내 컨디션에 맞는 건강 식단을 추천해 주는 앱이 있다면 얼마나 좋을까?" 🥗 
+하지만 이내 한숨이 나옵니다. 😮‍💨 
+자바스크립트, 파이썬, API 설정... 넘어야 할 산이 너무 높으니까요. 🏔 
+우리는 그렇게 수많은 아이디어를 '기술의 벽' 앞에서 포기하곤 했습니다.
+
+하지만 이제 세상이 바뀌었습니다. 🌍 
+당신의 '생각'을 '현실'로 바꾸는 데 필요한 것은 이제 복잡한 코드가 아닙니다. 오직 당신의 '아이디어'뿐입니다. ✨
+
+1️⃣ 설계도 대신 대화를 나누세요
+
+Google AI Studio의 'Build Mode'는 마치 유능한 개발자를 옆에 둔 것과 같습니다. 당신은 벽돌을 쌓는 법을 배울 필요가 없습니다. 그저 '설명'하기만 하면 됩니다.
+
+"매일 건강 식단을 추천해 주는 앱을 만들어줘."
+
+이 한 문장이 입력되는 순간, 화면 속에서는 수만 줄의 코드가 소리 없이 엮이기 시작합니다. 
+
+2️⃣ 마법이 일어나는 5단계 레시피
+
+접속 (The Gateway): 🔗Google AI Studio에 로그인하세요. 
+
+선택 (The Mode): 왼쪽 상단의 Build 섹션으로 이동합니다. 이곳은 당신의 상상이 현실이 되는 '작업실'입니다.
+
+주문 (The Spell): 프롬프트 창에 만들고 싶은 기능을 속삭이세요. "오늘 내 기분에 맞는 음악을 골라주는 앱을 만들어줘"
+
+연마 (The Polishing):  마음에 들지 않는 구석이 있다면? 다시 말하면 됩니다. "배경은 좀 더 시원한 파란색으로 해줘!"
+
+탄생 (The Release): 이제 Deploy App 버튼을 누르세요. 당신의 아이디어가 세상 밖으로 나가 나의 스마트폰에 안착할 준비를 마쳤습니다.
+
+👨🏻‍💻더 자세한 내용이 궁금하시다면?
+
+🔗구글 AI스튜디오로 앱 만들기 1탄(개요와 소개)
+https://x.com/i/status/2018567615078388024
+
+🔗구글 AI스튜디오로 앱 만들기 2탄( 실습과 작은 팁)
+https://x.com/i/status/2018567737132618228
+[Drone] [오전 10:45] @한태재  안녕하세요. 내일 스터디는 참석합니다. 금요일 저녁에 출국 결정되어서요~~ ㅎㅎ
+[한태재] [오전 11:20] 내일은 3번째 모임날입니다. 내일 발표는 @김관우 @지현 @정희수 @Yongjin 입니다. 발표 제목과 내용, 자료가 만들어지시면 구글 시트에 업로드부탁드립니다. 내일 발표도 정말 기대가 되네요! ㅎㅎ 내일도 각자 바이브코딩을 하면서 궁금한점을 해결하시는 시간도 가지려고 합니다. 모두 노트북 지참해주세요! 내일 참석하시는 분들은 이 글에 체크표시해주세요! 
+[Yongjin] [오전 11:47] 전 내일 오전에 올릴수 있을것 같습니다!
+[Drone] [오후 2:12] 앞으로 카톡 사용하려면 강제 동의해야 되네요. ㅠㅠ
+
+https://biz.sbs.co.kr/article/20000289549
+[지현] [오후 2:33] 사진
+메시지가 삭제되었습니다.
+[지현] [오후 3:29] https://news.hada.io/topic?id=26371
+오픈클로 커뮤니티 몰트북이 해킹되었다고 하네요.. 바이브코딩 보안에 대해 한차례 말이 많을것같아요
+[김관우] [오후 6:06] ]\'
+[한태재] [오후 7:23] ㅋㅋ 어제부터 무슨 명령어인가요 이건 ㅋㅋ
+[김관우] [오후 7:37] 아 죄송합니다.  카톡창 켜두고 작업하다보니 어쩌다 복사 됐나봐요 ㅠㅠ
+[한태재] [오후 7:52] ㅋㅋㅋ 어제도 남기시길래
+[김관우] [오후 7:53] 저 명령어가 도대체 왜 들어간지 모르겠어요 ^^;;..
+[Drone] [오후 11:01] 바이브코딩 에센셜 with claude code
+
+https://www.books.weniv.co.kr/essentials-vibecoding
+[Drone] [오후 11:04] Disney AI 소식
+
+https://www.theverge.com/news/872121/more-details-about-the-ai-videos-coming-to-disney-plus
+[Drone] [오후 11:06] Qwen 3 Coder Next 출시
+
+https://qwen.ai/blog?id=qwen3-coder-next
+--------------- 2026년 2월 5일 목요일 ---------------
+[Drone] [오전 12:11] https://youtu.be/umCszxxTN4s?si=4pqlexoD_kESH1gT
+[Drone] [오전 12:32] RAG 강의 (8시간 ㅎㄷㄷ)
+
+https://youtu.be/9c48sMot1gA
+메시지가 삭제되었습니다.
+[Drone] [오후 12:45] OpenClaw 플러그인 모음
+
+https://github.com/supermemoryai/clawdbot-supermemory
+https://clawdhub.com/seojoonkim/prompt-guard
+https://clawdhub.com/JimLiuxinghai/find-skills
+https://clawdhub.com/peterokase42/dont-hack-me
+[Drone] [오후 1:31] 사진 2장
+[Drone] [오후 1:31] ChatGPT에 대화 도중에 프롬프트 만드는 기능이 생겼네요
