@@ -1,5 +1,5 @@
 Creative vibe coding Lab 님과 카카오톡 대화
-저장한 날짜 : 2026-02-05 13:43:17
+저장한 날짜 : 2026-02-10 15:35:56
 
 --------------- 2026년 1월 15일 목요일 ---------------
 한태재님이 신영환 Simon님, 하두진님, 송명진님, 이정우님, 홍유진(Lucy)님, 김관우님, Drone님, Yongjin님, .님, 지현님, 설리님, 홍채영님, 정 주애님, 김용민님, cyberprophet님, 이용호님, Kim daegun님, 정희수님, han님을 초대했습니다.
@@ -1476,3 +1476,202 @@ https://clawdhub.com/JimLiuxinghai/find-skills
 https://clawdhub.com/peterokase42/dont-hack-me
 [Drone] [오후 1:31] 사진 2장
 [Drone] [오후 1:31] ChatGPT에 대화 도중에 프롬프트 만드는 기능이 생겼네요
+[한태재] [오후 2:03] 오늘 오시는데 체크안하신분들 체크해쥬세요!
+[Drone] [오후 5:37] @한태재  오늘 스터디 참석히지 못하게 되었습니다.  ㅠㅠ
+
+대표가 장기 출장 간다고 직원들과 같이 저녁 먹자고 하네요. (수료는 물건너 갔네요 ㅋㅋ)
+
+아쉽지만 잘 다녀와서 3월에 뵙겠습니다.^^ 
+[한태재] [오후 5:38] 네 알겠습니다 걱정마시고 잘 다녀오세요!
+[한태재] [오후 5:49] https://yozm.wishket.com/magazine/detail/3576/?utm_source=stibee&utm_medium=email&utm_campaign=newsletter_yozm&utm_content=contents
+[한태재] [오후 8:20] https://cvcl.vercel.app/
+[홍유진(Lucy)] [오후 8:34] @한태재 오늘 참석하지 못해서 죄송합니다 ㅠㅠ 오늘 회사 릴리즈 마지막 준비라서 이슈 대응하느라 금방 끝났네요..
+[한태재] [오후 8:48] 네네 괜찮아요
+[김관우] [오후 8:51] https://unveil.fr/
+[김관우] [오후 9:43] https://random-typeface.vercel.app/
+
+발표에 보여드린 영문 텍스트 자동생성기입니다. 
+재미삼아 테스트해보세요!
+메시지가 삭제되었습니다.
+[한태재] [오후 10:17] 사진
+[한태재] [오후 10:17] Pc로 해야겠군요 (슬픔)
+[한태재] [오후 10:17] 수고하셨어요! 발표가 풍성해지니 좋네요! 감사합니다 
+[나유진] [오후 10:23] 오늘 못가서 아쉽네요 ㅜㅜ
+[김관우] [오후 10:34] 아 짧은 시간에 테스트삼아 만들어 본거라,,  모바일 최적화는 못했습니다 ㅠ 
+[한태재] [오후 10:38] 네 ㅎㅎ 저도 맨날그래요 카톡공유하고나서 맨날 깨닫죠 ㅋㅋ 이것도 클로드한테 ㅡ 모바일 대응하라고하면 바로 해줍니다 ㅋㅋ
+[한태재] [오후 10:39] https://cvcl.vercel.app/ 여기에 개인 프로젝트로 올려주시면 좋겠네요!
+[한태재] [오후 10:39] 다른 분들도 지현님이 만들어주신 저 사이트에 자기소개&개인프로젝트 등 많이 올려주세요 ㅜ
+[한태재] [오후 10:40] 저희랩의 공식 사이트입니다 ㅋㅋ 저기에 아카이빙 해요😀
+--------------- 2026년 2월 6일 금요일 ---------------
+[han] [오전 8:53] https://www.reddit.com/r/ClaudeCode/comments/1qws3hj/introducing_agent_teams_research_preview/
+[han] [오전 8:54] 클로드에서 다수의 에이전트를 지원하는 기능을 발표했다고 하는데, 어제 나온 건가(?) 싶어서 공유합니다. 
+[han] [오전 8:54] 여러 개 에이전트가 협업해서 업무를 수행하는 '에이전트 팀' 기능이라고 하네요
+[han] [오전 8:55] https://www.themiilk.com/articles/a4a802462?u=4c3aa995&t=ac054d18c&from=
+[한태재] [오전 8:55] 네 이제 클로드끼리 대화하고 토론해서 결과물을 토론한대요 ㅎㅎ
+[지현] [오전 9:28] 멀티 에이전트까지.. 이제 진짜 알아서 다 하겠는데요
+[Yongjin] [오전 10:22] 뭔가 범죄에 써먹으면 좋을것 같아요. 범죄자 텍스트 콜라주 재밌어요. 
+[Yongjin] [오전 10:25] 사진
+[김관우] [오후 12:17] 앗 그런용도로 만든건 아니지만ㅎㅎㅎ 컬러를 저렇게 하니 그렇게(?) 사용해도 되긴하겠네요 ㅎㅎ
+[정 주애] [오후 12:55] https://coevo.space/post/40
+
+클로드 구독중이라면 크레딧 50불 받으세요!! 
+[김관우] [오후 1:40] https://www.threads.com/@choi.openai/post/C8jF3uJJY65?xmt=AQF0gkQqyjlEKS0EAAkiSgVpi-ShEgWmafoDKoQoZMZayQ
+
+나노바나나등 API 연결하실분들은 (신규 계정)
+google ai studio 처음 API 만들면 [300달러 API사용량(90일)을 줍니다! 왠만한 생성형 AI 테스트나 바이브코딩 서비스 만들때 연결해서 사용하시면 됩니다!!
+
++
+그리고 위와는 별개로 추가로 제미나이 구독하시는 분들은
+Google Developer Program 페이지에서 추가로 신청하시면 추가 크레딧을 매달 줍니다.
+Gemini Pro(매달 +10달러 크레딧) 
+Gemini Ultra(매달 +100달러 크레딧) 
+
+[김관우] [오후 1:40] https://developers.google.com/program/my-benefits?hl=ko
+[.] [오후 3:36] https://coevo.space/post/40
+기획자 모여있는 방이 있어서 저도 공유 받아서 전달드립니다! 
+클로드 구독중이시면 크레딧 50$ 받으실 수 잇습니다! 
+[.] [오후 3:36] 사진
+[.] [오후 3:37] 맥스 구독자도 가능하다고 하니 참고 부탁드립니다! 
+[한태재] [오후 4:07] ㅋㅋ 위에 공유되었어요!
+[한태재] [오후 4:07] 그래도 재공유 감사합니다 ㅎㅎ(헤헤)
+[.] [오후 4:08] 엇... ㅎㅎ 두번 공유 드렸네여 ㅠㅠㅠ 
+죄송합니다! 
+[한태재] [오후 4:10] 아닙니다 ㅋㅋ 감사합니다
+--------------- 2026년 2월 8일 일요일 ---------------
+[Drone] [오후 1:52] Hashed Vibe Labs의 시작 — 1st Batch 2026: Seoul Edition
+
+https://medium.com/hashed-kr/hashed-vibe-labs를-시작합니다-285e52fa2735
+[Drone] [오후 1:55] https://www.instagram.com/p/DUa7Kj9kr8O/?igsh=c29zMWl3Znc0cHQ0&img_index=11
+[Drone] [오후 3:10] 파일: SKILL.pdf
+[Drone] [오후 3:10] Anthropic Nicholas Carlini의 병렬 에이전트 팀 실험(C 컴파일러 프로젝트)에서 추출한 클로드코드 실전 패턴
+[Drone] [오후 3:23] Guide to Buildong Skills for Claude
+
+https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf?hsLang=en
+[설리] [오후 3:24] 안녕하세요! 혹시 발표가 이번주 인가요? 잘 기억이 안나서 여쭤요 
+[Drone] [오후 3:27] NotebookLM 모바일버전 기능 업데이트 대박이내요
+
+https://x.com/i/status/1997037814144278581
+[Drone] [오후 3:51] 마케터의 AI 무기: Antigravity와 md파일로 만드는 나만의 마케팅 에이전트
+
+https://modulabs.co.kr/community/momos/513
+
+강의 참고 내용)
+https://www.linkedin.com/posts/hongminji_tcurguqucswm-slsstwswktxu-ugcPost-7424102642718744576-6YZf
+[한태재] [오후 4:27] 사진
+[한태재] [오후 4:29] 사진
+[한태재] [오후 4:29] 2월12일 발표는 @김용민 @cyberprophet @송명진 @하두진  님입니다. 발표제목/자료 준비되시면 해당 링크에 업데이트 부탁드려요! https://docs.google.com/spreadsheets/d/19dvzgwjFUgnVwckGcxA5LqZNrD1pzlYetlw3vTJUzzw/edit?usp=sharing
+[하두진] [오후 4:31] 넵 알겠습니다!
+[한태재] [오후 4:32] 다음주 이후에도 아직 발표가 안 정해지신 분들은 @Kim daegun @이용호 @설리 @이정우 @. @han @홍유진(Lucy) @홍채영 님이십니다. 2월19일 혹은 2월26일에 발표예정이십니다. 천천히 준비해주세요!
+[한태재] [오후 4:32] 이번주는 아니시고 다음주나 다다음주에 하시면 될것 같아요
+[홍유진(Lucy)] [오후 4:32] 네! 알겠습니다~~!
+[.] [오후 4:34] 넵! 확인 감사합니다! 
+[Yongjin] [오후 4:37] 평소에  잘 사용하는데 매우 유용한 업데이트 기능으로 보이네요. 미팅때 노트나 판서 조금 더 신경써서 한다면 매우 도움이 될듯합니다. ^^ 공유 감사합니다.
+[한태재] [오후 4:40] 참고로 2월19일까지는 토이프로젝트 형태로 간단한 개별 프로젝트를 진행하고, 2월26을부터는 실제 최종 공유용?제출용?으로 실제 프로젝트에 들어갑니다. 2월26일 모임부터는 모든 연구원분들이 매주 조금씩이라도, 진행하고있는 프로젝트를 공유하는 형태로 가려고 합니다. 매주매주 진행상황과 잘 안되고 있는것들을 온라인/오프라인으로 적극적으로 공유하여 프로젝트 완성도를 높여갈 생각입니다. 각자 진행할 프로젝트를 구체화해주시고 먼저 지금부터 진행하셔도 됩니다.  
+[Drone] [오후 4:58] 현재 출장중인데 생각보다 관련 플젝 일을 빨리 끝낼 수 있을 것 같아서, 빠르면 19일이나 26일에는 참석 가능할 것 같네요. ㅎㅎ
+[Drone] [오후 4:59] https://youtu.be/O3SszAtinh4?si=He-wbxM8H6qO13wH
+[Drone] [오후 5:55] HOBBYTAN-COUNCIL: Build in Public (HobbytanAI Core OS)
+
+https://github.com/devpablokim/hobbytan-council-open
+[Drone] [오후 6:27] https://www.hankyung.com/amp/202602081169i
+[설리] [오후 10:17] 혹시 19일에 발표 해도 될까요? 제가 그 다음주는 여행을 가서 26일은 참여를 못해요! 감사합니다 
+[한태재] [오후 10:20] 네네 발표하고싶으신분들 알려주세요 발표순선에 넣어드릴게요
+[han] [오후 10:21] 저는 26일 희망합니다!
+[한태재] [오후 10:23] 네넵
+[홍유진(Lucy)] [오후 10:31] 저도 19일 희망합니다!
+[한태재] [오후 10:36] 사진
+[한태재] [오후 10:36] 좋아요. 19일 한자리 남았습니다 ㅎ
+[이용호] [오후 11:12] 저는 19일 제출할 제안서가 있어서 26일날로 하겠습니다
+--------------- 2026년 2월 9일 월요일 ---------------
+[Drone] [오전 8:33] Opus Prompt
+
+https://www.threads.com/@choi.openai/post/DUg7t0qCE5C
+메시지가 삭제되었습니다.
+[Drone] [오전 8:33] 사진
+[정 주애] [오전 8:36] 서기하면 발표 안해도 되는건가요? ㅎㅎ
+저도 아직 발표 안했는데.. 
+[한태재] [오전 8:39] 아 그러네요 서기랑은 상관없어요 발표하셔야죠 ㅎㅎ 
+[정 주애] [오전 8:39] 아 아쉽네요 ㅋㅋㅋㅋㅋ 그럼 저19일날로 하겠습니다!
+[Drone] [오후 2:44] AI 개발자의 AI 활용법
+
+https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=959833
+[Drone] [오후 3:14] 사진
+[Drone] [오후 3:15] 사진
+[Drone] [오후 3:15] 사진
+[Drone] [오후 3:15] 파일: Claude Code - AI Agent Orchestration.pdf
+[Drone] [오후 5:09] @한태재  저는 결과 제출을 주제를 변경하려고 합니다.
+
+지난번 발표 당시 추진하려고 했던 것은 같이 봉사하는 친구가 하기로 했고, 저는 사용자가 원하는 서비스 개발을 초보자들이 쉽게 할 수 있는 자동화 템플릿을 개발하여 제출하도록 하겠습니다.
+
+변경 가능한가요? ㅎㅎ
+[한태재] [오후 5:19] 10번 바꾸셔도됩니다 ㅎㅎ
+[Drone] [오후 5:22] 알겠습니다. 감사드립니다.^^
+[Drone] [오후 5:23] 브레인스토밍 Card Deck
+
+https://www.coletree.com/weblog/inspirenote/
+[Drone] [오후 5:25] Free eBooks
+
+https://www.obooko.com/
+[Drone] [오후 5:35] AI Agent Skills Manager
+
+https://www.agenstskills.com/
+[Drone] [오후 5:43] Publish Sites (no Setup)
+
+https://pinme.eth.limo/
+[Drone] [오후 5:45] Mobile QA Agnet
+
+https://quashbugs.com/
+[Drone] [오후 5:51] Visual Editor for AI Agent
+
+https://www.tryinspector.com/
+[Drone] [오후 11:43] Google Paper Banana
+
+
+https://github.com/dwzhu-pku/PaperBanana
+
+https://arxiv.org/pdf/2601.23265
+
+https://www.aitimes.com/news/articleView.html?idxno=206553
+
+[Drone] [오후 11:46] Canva Education 무료 가입 가능
+
+https://www.canva.com/brand/join?token=GpC9akZtyVwjG3TtELWSiQ&brandingVariant=edu&referrer=team-invite
+--------------- 2026년 2월 10일 화요일 ---------------
+[Drone] [오전 8:36] https://longblack.co/note/1886?ticket=NT2607d757ace86489d32cc626917177ca65db
+[Drone] [오전 8:36] https://www.yna.co.kr/view/AKR20260209155800017
+[han] [오전 8:37] https://koi-fish-animation.vercel.app/
+
+업데이트 버전입니다. 핸드폰으로 보면 좀 버벅이네요
+[han] [오전 8:38] 동영상
+[Drone] [오전 8:51] 이모티콘
+[Drone] [오전 9:25] 토큰 계층화
+
+https://tonylee.im/ko/blog/opus-4-6-token-divide-ai-inequality-2026
+[Drone] [오전 11:39] Claude Code Tips
+
+https://drive.google.com/file/d/1x2x1T4lzTISnHGN8nd4KtMhL8iwi6QgU/view
+[Drone] [오전 11:41] 제가 아는 절친 후배가 정리하고 있는 OpenClaw 한글화 문서인데 추천드리니 참고하시기 바랍니다.
+
+https://openclaw-kor-doc.vercel.app/start/getting-started
+[지현] [오후 1:57] https://skills.sh/
+vercel에서 agent skill 생태계 사이트를 만들었네요! 한눈에 놓고 보기도 편하고, 검색도 용이해서 공유드려요
+[한태재] [오후 2:38] 사진
+[한태재] [오후 2:38] 클로드코드에서 글자가 가끔 깨지는데 ㅋㅋ 자체적으로 예술작품같네요 ㅋㅋ 
+[Drone] [오후 3:02] AI PM Roadmap
+
+https://www.linkedin.com/posts/mariaf-pm_if-i-had-to-learn-ai-pm-again-i-would-start-activity-7402088194600607744-NNWz
+[설리] [오후 3:07] 혹시 저번 시간에 아카이빙한 사이트 주소좀 다시 받을수 있을까용...? 
+[한태재] [오후 3:10] https://cvcl.vercel.app/ 요기요?
+[설리] [오후 3:11] 감사합니다!!!
+
+[한태재] [오후 3:12] 사진
+[한태재] [오후 3:13] 3주간 발표자 리스트업 입니다 ㅎㅎ
+[한태재] [오후 3:17] 종석님이 공유해주셨던것같긴하지만 - 클로드 코워크 - https://blog.naver.com/pjt3591oo/224147133179
+[한태재] [오후 3:17] 이 녀석은 비개발자를 위한 기능입니다.
+
+​
+
+대부분의 클로드를 사용하는 개발자분들은 클로드 코드(claude code)를 이용하여 터미널을 기반으로 사용합니다. 하지만 일반인이 터미널을 사용하는 것이 쉽지많은 않습니다. 그래서 Anthropic은 GUI 기반 프로그램인 클로드 데스크탑(claude desktop)에 클로드 코워크(claude cowork) 기능을 추가하여 일반 사용자도 로컬 컴퓨터의 파일과 폴더를 직접 제어할 수 있도록 하였습니다. 머 쉽게 말하면 AI가 내 컴퓨터의 파일을 직접 다룰 수 있게되었다고 보면 됩니다.
+
+​
+[출처] 일반인들을 위한 클로드 코워크(claude cowork)|작성자 멍개
+[한태재] [오후 3:17] 이런게 있군요 한번 써봐야겠네여

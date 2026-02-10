@@ -16,6 +16,7 @@ const MemberEditor: React.FC<MemberEditorProps> = ({ isOpen, onClose, onSave, me
   const [intro, setIntro] = useState('');
   const [goal, setGoal] = useState('');
   const [interests, setInterests] = useState('');
+  const [website, setWebsite] = useState(''); // New state for website
   const [isLeader, setIsLeader] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -29,6 +30,7 @@ const MemberEditor: React.FC<MemberEditorProps> = ({ isOpen, onClose, onSave, me
         setIntro(memberToEdit.intro || '');
         setGoal(memberToEdit.goal || '');
         setInterests(memberToEdit.interests || '');
+        setWebsite(memberToEdit.website || ''); // Initialize website state
         setIsLeader(memberToEdit.is_leader || false);
       } else {
         setNickname('');
@@ -37,6 +39,7 @@ const MemberEditor: React.FC<MemberEditorProps> = ({ isOpen, onClose, onSave, me
         setIntro('');
         setGoal('');
         setInterests('');
+        setWebsite(''); // Clear website state for new member
         setIsLeader(false);
       }
       setSelectedFile(null);
@@ -70,6 +73,7 @@ const MemberEditor: React.FC<MemberEditorProps> = ({ isOpen, onClose, onSave, me
       intro,
       goal,
       interests,
+      website, // Include website in onSave
       is_leader: isLeader,
     }, selectedFile);
     onClose();
@@ -188,6 +192,18 @@ const MemberEditor: React.FC<MemberEditorProps> = ({ isOpen, onClose, onSave, me
               onChange={(e) => setInterests(e.target.value)}
               className="w-full px-3 py-2 border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="React, AI, TypeScript..."
+            />
+          </div>
+
+          {/* New website input field */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">웹사이트</label>
+            <input
+              type="text"
+              value={website}
+              onChange={(e) => setWebsite(e.target.value)}
+              className="w-full px-3 py-2 border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="https://example.com"
             />
           </div>
         </div>

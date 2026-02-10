@@ -57,6 +57,7 @@ export interface Member {
   interests: string;
   is_leader: boolean;
   created_at: string;
+  website?: string;
 }
 
 export enum ViewMode {

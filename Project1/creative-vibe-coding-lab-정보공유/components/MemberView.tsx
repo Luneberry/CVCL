@@ -1,5 +1,5 @@
 import React from 'react';
-import { PencilIcon, TrashIcon, PlusIcon, UserCircleIcon, HeartIcon, TrophyIcon } from '@heroicons/react/24/outline';
+import { PencilIcon, TrashIcon, PlusIcon, UserCircleIcon, HeartIcon, TrophyIcon, GlobeAltIcon } from '@heroicons/react/24/outline'; // Added GlobeAltIcon
 import type { Member } from '../types';
 
 interface MemberViewProps {
@@ -126,6 +126,25 @@ const MemberView: React.FC<MemberViewProps> = ({ members, onAdd, onEdit, onDelet
                       </div>
                     </div>
                   </div>
+
+                  {member.website && (
+                    <div className="flex gap-3">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-green-50 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400">
+                        <GlobeAltIcon className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">Website</h4>
+                        <a 
+                          href={member.website.startsWith('http') ? member.website : `https://${member.website}`} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="text-sm text-blue-500 dark:text-blue-400 hover:underline line-clamp-1"
+                        >
+                          {member.website}
+                        </a>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
